@@ -983,6 +983,7 @@ CMakeFiles/SnakeGame.dir/src/game.cpp.o: \
   /Users/lsuryana/CppND-Capstone-Snake-Game/src/controller.h \
   /Users/lsuryana/CppND-Capstone-Snake-Game/src/snake.h \
   /Users/lsuryana/CppND-Capstone-Snake-Game/src/renderer.h \
+  /Users/lsuryana/CppND-Capstone-Snake-Game/src/high_score_manager.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/iostream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/istream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/usr/include/c++/v1/ostream \

@@ -177,6 +177,30 @@ src/game.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/game.cpp.s
 .PHONY : src/game.cpp.s
 
+src/high_score_manager.o: src/high_score_manager.cpp.o
+.PHONY : src/high_score_manager.o
+
+# target to build an object file
+src/high_score_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/high_score_manager.cpp.o
+.PHONY : src/high_score_manager.cpp.o
+
+src/high_score_manager.i: src/high_score_manager.cpp.i
+.PHONY : src/high_score_manager.i
+
+# target to preprocess a source file
+src/high_score_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/high_score_manager.cpp.i
+.PHONY : src/high_score_manager.cpp.i
+
+src/high_score_manager.s: src/high_score_manager.cpp.s
+.PHONY : src/high_score_manager.s
+
+# target to generate assembly for a file
+src/high_score_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/SnakeGame.dir/build.make CMakeFiles/SnakeGame.dir/src/high_score_manager.cpp.s
+.PHONY : src/high_score_manager.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -264,6 +288,9 @@ help:
 	@echo "... src/game.o"
 	@echo "... src/game.i"
 	@echo "... src/game.s"
+	@echo "... src/high_score_manager.o"
+	@echo "... src/high_score_manager.i"
+	@echo "... src/high_score_manager.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

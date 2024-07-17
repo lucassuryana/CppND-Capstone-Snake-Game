@@ -6,6 +6,7 @@
 #include "controller.h"
 #include "renderer.h"
 #include "snake.h"
+#include "high_score_manager.h"
 
 class Game {
  public:
@@ -28,6 +29,8 @@ class Game {
 
   void PlaceFood();
   void Update();
+
+  HighScoreManager high_score_manager{"highscores.txt"};
 };
 
 #endif

@@ -1,13 +1,16 @@
 #include "game.h"
 #include <iostream>
 #include "SDL.h"
+#include "high_score_manager.h"
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width - 1)),
-      random_h(0, static_cast<int>(grid_height - 1)) {
+      random_h(0, static_cast<int>(grid_height - 1)),
+      high_score_manager("highscores.txt") {
   PlaceFood();
+  high_score_manager.LoadHighScores();
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer,
@@ -46,6 +49,15 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // achieve the correct frame rate.
     if (frame_duration < target_frame_duration) {
       SDL_Delay(target_frame_duration - frame_duration);
+    }
+
+    if (!running) {
+      std::string player_name;
+      std::cout << "Enter your name: ";
+      std::cin >> player_name;
+      high_score_manager.UpdateHighScores(player_name, score);
+      high_score_manager.PrintHighScores();
+      high_score_manager.SaveHighScores();
     }
   }
 }

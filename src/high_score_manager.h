@@ -10,11 +10,13 @@ class HighScoreManager {
         void LoadHighScores();
         void SaveHighScores();
         void UpdateHighScores(const std::string &player_name, int score);
-        void PintHighScores();
+        void PrintHighScores() const;
     
     private:
         std::string file_name;
         std::vector<std::pair<std::string, int>> high_scores;
+
+        void SortHighScores();
 };
 
 #endif
