@@ -8,33 +8,43 @@ class Snake {
  public:
   enum class Direction { kUp, kDown, kLeft, kRight };
 
-  Snake(int grid_width, int grid_height)
-      : grid_width(grid_width),
-        grid_height(grid_height),
-        head_x(grid_width / 2),
-        head_y(grid_height / 2) {}
+  Snake(int grid_width, int grid_height);
 
   void Update();
-
   void GrowBody();
   bool SnakeCell(int x, int y);
 
-  Direction direction = Direction::kUp;
+  // Public getter methods
+  Direction GetDirection() const;
+  float GetSpeed() const;
+  int GetSize() const;
+  bool IsAlive() const;
+  float GetHeadX() const;
+  float GetHeadY() const;
+  std::vector<SDL_Point> GetBody() const;
 
-  float speed{0.1f};
-  int size{1};
-  bool alive{true};
-  float head_x;
-  float head_y;
-  std::vector<SDL_Point> body;
+  // Public setter methods
+  void SetDirection(Direction direction);
+  void SetSpeed(float speed);
+  void SetSize(int size);
+  void SetAlive(bool alive);
+  void SetHeadX(float head_x);
+  void SetHeadY(float head_y);
 
- private:
-  void UpdateHead();
-  void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell);
+  private:
+    void UpdateHead();
+    void UpdateBody(SDL_Point &current_cell, SDL_Point &prev_cell);
 
-  bool growing{false};
-  int grid_width;
-  int grid_height;
+    Direction direction;
+    float speed;
+    int size;
+    bool alive;
+    float head_x;
+    float head_y;
+    std::vector<SDL_Point> body;
+    bool growing;
+    int grid_width;
+    int grid_height;
 };
 
 #endif
