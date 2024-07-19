@@ -6,6 +6,8 @@
 
 class HighScoreManager {
     public:
+        // Constructor
+        // Initializes the high score manager through file that contains the list of high scores
         HighScoreManager(const std::string &file_name);
         // Load the scores data from file
         void LoadHighScores();

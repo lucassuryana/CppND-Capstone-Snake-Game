@@ -3,16 +3,19 @@
 #include "SDL.h"
 #include "high_score_manager.h"
 
+// Constructor
+// Initializes the game with a grid of specified width and height, and sets up the random number generators
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width - 1)),
       random_h(0, static_cast<int>(grid_height - 1)),
       high_score_manager("highscores.txt") {
-  PlaceFood();
-  high_score_manager.LoadHighScores();
+  PlaceFood(); // Place the initial food
+  high_score_manager.LoadHighScores(); // Load high scores from file
 }
 
+// Runs the main game loop: handles input, updates game state, and renders the game
 void Game::Run(Controller const &controller, Renderer &renderer,
                std::size_t target_frame_duration) {
   Uint32 title_timestamp = SDL_GetTicks();
@@ -62,6 +65,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
   }
 }
 
+// Places food at random location not occupied by the snake
 void Game::PlaceFood() {
   int x, y;
   while (true) {
@@ -77,6 +81,7 @@ void Game::PlaceFood() {
   }
 }
 
+// Updates the game state: moves the snake, check for collisions, and handles food consumption
 void Game::Update() {
   if (!snake.IsAlive()) return;
 
@@ -95,5 +100,7 @@ void Game::Update() {
   }
 }
 
+// Returns the current score of the game
 int Game::GetScore() const { return score; }
+// Returns the current size of the snake
 int Game::GetSize() const { return snake.GetSize(); }
