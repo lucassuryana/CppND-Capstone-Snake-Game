@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/Users/lsuryana/CppND-Capstone-Snake-Game/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -I/opt/homebrew/Cellar/sdl2/2.30.2/include -I/Users/lsuryana/CppND-Capstone-Snake-Game/src -isystem /opt/homebrew/Cellar/sdl2/2.30.2/include/SDL2 -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk   -std=c++17 -o CMakeFiles/SnakeGame.dir/src/main.cpp.o -c /Users/lsuryana/CppND-Capstone-Snake-Game/src/main.cpp",
+  "file": "/Users/lsuryana/CppND-Capstone-Snake-Game/src/main.cpp",
+  "output": "CMakeFiles/SnakeGame.dir/src/main.cpp.o"
+},
+{
+  "directory": "/Users/lsuryana/CppND-Capstone-Snake-Game/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -I/opt/homebrew/Cellar/sdl2/2.30.2/include -I/Users/lsuryana/CppND-Capstone-Snake-Game/src -isystem /opt/homebrew/Cellar/sdl2/2.30.2/include/SDL2 -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk   -std=c++17 -o CMakeFiles/SnakeGame.dir/src/game.cpp.o -c /Users/lsuryana/CppND-Capstone-Snake-Game/src/game.cpp",
+  "file": "/Users/lsuryana/CppND-Capstone-Snake-Game/src/game.cpp",
+  "output": "CMakeFiles/SnakeGame.dir/src/game.cpp.o"
+},
+{
+  "directory": "/Users/lsuryana/CppND-Capstone-Snake-Game/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -I/opt/homebrew/Cellar/sdl2/2.30.2/include -I/Users/lsuryana/CppND-Capstone-Snake-Game/src -isystem /opt/homebrew/Cellar/sdl2/2.30.2/include/SDL2 -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk   -std=c++17 -o CMakeFiles/SnakeGame.dir/src/controller.cpp.o -c /Users/lsuryana/CppND-Capstone-Snake-Game/src/controller.cpp",
+  "file": "/Users/lsuryana/CppND-Capstone-Snake-Game/src/controller.cpp",
+  "output": "CMakeFiles/SnakeGame.dir/src/controller.cpp.o"
+},
+{
+  "directory": "/Users/lsuryana/CppND-Capstone-Snake-Game/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -I/opt/homebrew/Cellar/sdl2/2.30.2/include -I/Users/lsuryana/CppND-Capstone-Snake-Game/src -isystem /opt/homebrew/Cellar/sdl2/2.30.2/include/SDL2 -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk   -std=c++17 -o CMakeFiles/SnakeGame.dir/src/renderer.cpp.o -c /Users/lsuryana/CppND-Capstone-Snake-Game/src/renderer.cpp",
+  "file": "/Users/lsuryana/CppND-Capstone-Snake-Game/src/renderer.cpp",
+  "output": "CMakeFiles/SnakeGame.dir/src/renderer.cpp.o"
+},
+{
+  "directory": "/Users/lsuryana/CppND-Capstone-Snake-Game/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -I/opt/homebrew/Cellar/sdl2/2.30.2/include -I/Users/lsuryana/CppND-Capstone-Snake-Game/src -isystem /opt/homebrew/Cellar/sdl2/2.30.2/include/SDL2 -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk   -std=c++17 -o CMakeFiles/SnakeGame.dir/src/snake.cpp.o -c /Users/lsuryana/CppND-Capstone-Snake-Game/src/snake.cpp",
+  "file": "/Users/lsuryana/CppND-Capstone-Snake-Game/src/snake.cpp",
+  "output": "CMakeFiles/SnakeGame.dir/src/snake.cpp.o"
+},
+{
+  "directory": "/Users/lsuryana/CppND-Capstone-Snake-Game/build",
+  "command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -I/opt/homebrew/Cellar/sdl2/2.30.2/include -I/Users/lsuryana/CppND-Capstone-Snake-Game/src -isystem /opt/homebrew/Cellar/sdl2/2.30.2/include/SDL2 -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk   -std=c++17 -o CMakeFiles/SnakeGame.dir/src/high_score_manager.cpp.o -c /Users/lsuryana/CppND-Capstone-Snake-Game/src/high_score_manager.cpp",
+  "file": "/Users/lsuryana/CppND-Capstone-Snake-Game/src/high_score_manager.cpp",
+  "output": "CMakeFiles/SnakeGame.dir/src/high_score_manager.cpp.o"
+}
+]
