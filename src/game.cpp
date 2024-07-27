@@ -22,6 +22,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
                std::size_t target_frame_duration) {
   renderer_ptr = &renderer; // Set the renderer pointer to the passed renderer
 
+  // Start the game update and rendering threads
   game_thread = std::thread(&Game::GameLoop, this, target_frame_duration);
   render_thread = std::thread(&Game::RenderLoop, this);
 
@@ -55,7 +56,7 @@ void Game::GameLoop(std::size_t target_frame_duration) {
 
     {
       std::lock_guard<std::mutex> lock(game_mutex);
-      Update();
+      Update(); //Update the game state
     }
 
     frame_end = SDL_GetTicks();
@@ -86,10 +87,10 @@ void Game::RenderLoop() {
     {
       std::lock_guard<std::mutex> lock(game_mutex);
       if (renderer_ptr) {
-        renderer_ptr->Render(snake, food);
+        renderer_ptr->Render(snake, food); // Render the game
       }
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(16)); // Roughly 60 FPS
+    std::this_thread::sleep_for(std::chrono::milliseconds(8)); // Roughly 60 FPS
   }
 }
 
