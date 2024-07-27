@@ -14,7 +14,7 @@ void HighScoreManager::LoadHighScores() {
         std::string name;
         int score;
         while (file >> name >> score) {
-            high_scores.push_back({name, score});
+            high_scores.push_back({std::move(name), score});
         }
         file.close();
     }

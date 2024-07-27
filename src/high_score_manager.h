@@ -9,6 +9,14 @@ class HighScoreManager {
         // Constructor
         // Initializes the high score manager through file that contains the list of high scores
         HighScoreManager(const std::string &file_name);
+
+        // Move constructor and move assignment operator
+        HighScoreManager(HighScoreManager &&other) noexcept;
+        HighScoreManager& operator=(HighScoreManager &&other) noexcept;
+
+        // Deleted copy constructor and copy assignment operator
+        HighScoreManager(const HighScoreManager &) = delete;
+        HighScoreManager& operator=(const HighScoreManager &) = delete;     
         // Load the scores data from file
         void LoadHighScores();
         // Save the scores to file
