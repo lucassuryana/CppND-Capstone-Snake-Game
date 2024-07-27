@@ -16,7 +16,8 @@ class HighScoreManager {
 
         // Deleted copy constructor and copy assignment operator
         HighScoreManager(const HighScoreManager &) = delete;
-        HighScoreManager& operator=(const HighScoreManager &) = delete;     
+        HighScoreManager& operator=(const HighScoreManager &) = delete;    
+         
         // Load the scores data from file
         void LoadHighScores();
         // Save the scores to file
