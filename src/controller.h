@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 
 #include "snake.h"
+#include <atomic>
 
 class Controller {
  public:

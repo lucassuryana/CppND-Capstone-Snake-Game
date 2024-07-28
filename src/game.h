@@ -2,8 +2,11 @@
 #define GAME_H
 
 #include <random>
+#include <atomic>
 #include <thread>
 #include <mutex>
+#include <condition_variable>
+#include <functional>
 #include <queue>
 #include "SDL.h"
 #include "controller.h"
