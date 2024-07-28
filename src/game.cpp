@@ -2,7 +2,6 @@
 #include <iostream>
 #include "SDL.h"
 #include "high_score_manager.h"
-#include <dispatch/dispatch.h>
 
 // Constructor
 Game::Game(std::size_t grid_width, std::size_t grid_height)
