@@ -1,15 +1,10 @@
 # CPPND: Capstone Snake Game Example
 
-This is a starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
+This project is an extended version of the classic [Snake game](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl), developed as part of the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). It demonstrates advanced C++ features, including smart pointers, multithreading, and resource management using the Rule of Five.
 
 <img src="snake_game.gif"/>
 
-The Capstone Project gives you a chance to integrate what you've learned throughout this program. This project will become an important part of your portfolio to share with current and future colleagues and employers.
-
-In this project, you can build your own C++ application or extend this Snake game, following the principles you have learned throughout this Nanodegree Program. This project will demonstrate that you can independently create applications using a wide range of C++ features.
-
 ## Features
-
 - **Snake Game**: A classic Snake game implemented using C++ and SDL2.
 - **High Score Management**: Tracks and saves high scores using a `high_score_manager` component. High scores are stored in a file (`highscores.txt`) and are updated every time the player finishes a game. This feature helps keep track of the best scores and adds a competitive edge to the game.
 - **Rule of Five Implementation**: The `Renderer` class implements the Rule of Five, managing resources properly with a destructor, copy constructor, copy assignment operator, move constructor, and move assignment operator. It utilizes smart pointers to handle resource management effectively.
@@ -51,6 +46,28 @@ The game includes a `high_score_manager` that manages player scores. The `high_s
 1. **Member Initialization Lists**: Class constructors utilize member initialization lists to initialize class members efficiently.
 2. **Rule of Five**: The `Renderer` class implements the Rule of Five, using smart pointers to manage resources and ensure proper cleanup.
 3. **Multithreading and Mutexes**: The game implements multithreading to handle game logic and rendering in separate threads. Mutexes are used to protect shared resources and ensure thread safety.
+
+## Code modification highlights per rubric
+1. Loops, Functions, I/O
+* Criteria 1: The project reads data from a file and process the data
+  * File: 'game.cpp'
+  * Lines: 8-18
+  * Explanation: During the construction of the Game class, a file named "highscores.txt" is initialized. The LoadHighScore() method from high_sore_manager class reads from a file with the same name.
+
+* Criteria 2: (1) The project writes data to a file and (2) The project accepts user input and processes the input
+  * File: 'game.cpp'
+  * Lines: 32-39
+  * Explanation: When the snake game stops running, players are required to enter their names. The SaveHighScore() method then saves the scores in a file named "highscores.txt". Before saving, the code updates the existing high scores and sorts them from highest to lowest using the UpdateHighScore() method.
+
+* Criteria 3: The project uses data structures and immutable variables
+  * File: 'high_score_manager.cpp'
+  * Lines: 11-21
+  * Explanation: When the LoadHighScore() method reads the file, it extracts player names along with their corresponding scores. A vector called high_scores stores these values, with each pair of player name and score saved as an individual entry in the vector.
+
+  2. Object Oriented Programming
+  * Criteria 1: One or more classes are added to the project with appropriate access specifiers for class members.
+  * Files: 'high_score_manager.cpp', 'high_score_manager.h', 'snake.h', and 'snake.cpp'
+  * Explanation: The files high_score_manager.cpp and high_score_manager.h define a new class called HighScoreManager. There is a clear separation between public and private methods and variables in the code. For instance, in 'high_score_manager.h' (lines 31-35), private variables file_name and high_scores, as well as the private method SortHighScore(), are declared. The 'snake.h' file (lines 17-32) includes explicit getter and setter methods and defines private variables such as speed that are subject to invariants. To ensure data integrity, an if-else statement is used in 'snake.cpp' (lines 134-139) to verify that the speed value is always positive.
 
 ## License
 
