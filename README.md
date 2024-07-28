@@ -64,10 +64,43 @@ The game includes a `high_score_manager` that manages player scores. The `high_s
   * Lines: 11-21
   * Explanation: When the LoadHighScore() method reads the file, it extracts player names along with their corresponding scores. A vector called high_scores stores these values, with each pair of player name and score saved as an individual entry in the vector.
 
-  2. Object Oriented Programming
-  * Criteria 1: One or more classes are added to the project with appropriate access specifiers for class members.
+2. Object Oriented Programming
+* Criteria 1: One or more classes are added to the project with appropriate access specifiers for class members.
   * Files: 'high_score_manager.cpp', 'high_score_manager.h', 'snake.h', and 'snake.cpp'
   * Explanation: The files high_score_manager.cpp and high_score_manager.h define a new class called HighScoreManager. There is a clear separation between public and private methods and variables in the code. For instance, in 'high_score_manager.h' (lines 31-35), private variables file_name and high_scores, as well as the private method SortHighScore(), are declared. The 'snake.h' file (lines 17-32) includes explicit getter and setter methods and defines private variables such as speed that are subject to invariants. To ensure data integrity, an if-else statement is used in 'snake.cpp' (lines 134-139) to verify that the speed value is always positive.
+
+* Criteria 2: Class constructors utilize member initialization lists.
+  * File: snake.cpp
+  * Lines: 7-16
+  * Explanation: Initialize the snake at the center of the grid with initial settings
+
+* Criteria 3: Classes abstract implementation details from their interfaces.
+  * File: 'high_score_manager.cpp'
+  * Lines: entire lines of code
+  * Explanation: all the methods name is self-explained. The user of the code shall understand how LoadHighScore(), SaveHighScore(), and UpdateHighScore() works as what the methods do is exactly the same as its name.
+
+3. Memory Management
+* Criteria 1: The project follows the Rule of 5.
+  * File: 'renderer.h'
+  * Lines: 10-20
+
+* Criteria 2: The project uses move semantics to move data instead of copying it, where possible.
+  * File:'high_score_manager.cpp' and 'renderer.cpp'
+  * Lines: 17 (high score manager), 151-152 (renderer) and 164-165 (renderer)
+  * Explanation: Move semantics std::move is used to move data of name and score to vector of high_scores in 'high_scores_manager.cpp'. The same move semantics also used to move sdl_window and sdl_renderer in 'renderer.cpp'
+
+* Criteria 3: The project uses smart pointers instead of raw pointers.
+  * File: 'renderer.h'
+  * Lines: 23-24
+
+4. Concurrency
+* Criteria 1: The project uses multithreading.
+  * File: 'game.h' and 'game.cpp'
+  * Lines: 32-33 (game.h), 35-36 (game.h), 26-27 (game.cpp)
+
+* Criteria 2: A mutex or lock is used in the project.
+  * File: 'game.h' and game.cpp
+  * Lines: 35 (game.h), 58 (game.cpp), 70 (game.cpp), 88 (game.cpp)
 
 ## License
 
