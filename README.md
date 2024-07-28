@@ -7,8 +7,6 @@ This project is an extended version of the classic [Snake game](https://coderevi
 ## Features
 - **Snake Game**: A classic Snake game implemented using C++ and SDL2.
 - **High Score Management**: Tracks and saves high scores using a `high_score_manager` component. High scores are stored in a file (`highscores.txt`) and are updated every time the player finishes a game. This feature helps keep track of the best scores and adds a competitive edge to the game.
-- **Rule of Five Implementation**: The `Renderer` class implements the Rule of Five, managing resources properly with a destructor, copy constructor, copy assignment operator, move constructor, and move assignment operator. It utilizes smart pointers to handle resource management effectively.
-- **Multithreading**: The game uses multithreading to separate game logic and rendering tasks. It creates and manages separate threads for updating game state and rendering graphics. Synchronization between threads is handled using mutexes to prevent data races and ensure thread safety.
 
 ## Dependencies for Running Locally
 
