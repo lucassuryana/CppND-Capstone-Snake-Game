@@ -1,2 +1,10 @@
-Lucas 4
-Lucas 3
+lucas 3
+asd 2
+asd 2
+asd 2
+lucas 2
+asd 1
+asd 1
+Lucas 0
+Lucas 0
+asd 0
