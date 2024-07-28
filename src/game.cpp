@@ -130,8 +130,23 @@ void Game::Stop() { running = false; }
 
 // Utility function to post work to the main thread
 void Game::PostToMainThread(std::function<void()> func) {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    {
+        std::lock_guard<std::mutex> lock(queue_mutex);
+        main_thread_queue.push(func);
+    }
+    queue_cv.notify_one();
+}
+
+void Game::RunMainThreadTasks() {
+    std::function<void()> func;
+    while (running) {
+        {
+            std::unique_lock<std::mutex> lock(queue_mutex);
+            queue_cv.wait(lock, [this]{ return !main_thread_queue.empty(); });
+            func = std::move(main_thread_queue.front());
+            main_thread_queue.pop();
+        }
         func();
-    });
+    }
 }
 

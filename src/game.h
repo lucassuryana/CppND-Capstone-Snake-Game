@@ -4,6 +4,7 @@
 #include <random>
 #include <thread>
 #include <mutex>
+#include <queue>
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
@@ -40,6 +41,12 @@ class Game {
   void GameLoop(std::size_t target_frame_duration);
   void RenderLoop();
   void PostToMainThread(std::function<void()> func); // Add this line
+  void RunMainThreadTasks();
+
+  // New members for managing main thread tasks
+  std::queue<std::function<void()>> main_thread_queue;
+  std::mutex queue_mutex;
+  std::condition_variable queue_cv;
 };
 
 #endif
