@@ -7,6 +7,7 @@ This project is an extended version of the classic [Snake game](https://coderevi
 ## Features
 - **Snake Game**: A classic Snake game implemented using C++ and SDL2.
 - **High Score Management**: Tracks and saves high scores using a `high_score_manager` component. High scores are stored in a file (`highscores.txt`) and are updated every time the player finishes a game. This feature helps keep track of the best scores and adds a competitive edge to the game.
+- **Bonus Food**: After the snake eats a certain number of regular foods, a bonus food, which appears in green, will appear. If the snake eats this bonus food, a bonus score will be added. However, the snake has a limited amount of time to consume the bonus food before it disappears. The closer the bonus food is to disappearing, the lower the score it provides.
 
 ## Dependencies for Running Locally
 
@@ -38,12 +39,6 @@ The game includes a `high_score_manager` that manages player scores. The `high_s
 - **Update High Scores**: After each game, the player's score is compared to the existing high scores. If the player achieves a new high score, it is updated in the file.
 - **Save High Scores**: The updated high scores are saved back to `highscores.txt`, ensuring that the high scores persist across game sessions.
 - **Display High Scores**: At the end of each game, the updated high scores are displayed to the player.
-
-## Implementation Details
-
-1. **Member Initialization Lists**: Class constructors utilize member initialization lists to initialize class members efficiently.
-2. **Rule of Five**: The `Renderer` class implements the Rule of Five, using smart pointers to manage resources and ensure proper cleanup.
-3. **Multithreading and Mutexes**: The game implements multithreading to handle game logic and rendering in separate threads. Mutexes are used to protect shared resources and ensure thread safety.
 
 ## Code modification highlights per rubric
 1. Loops, Functions, I/O
@@ -93,12 +88,14 @@ The game includes a `high_score_manager` that manages player scores. The `high_s
 
 4. Concurrency
 * Criteria 1: The project uses multithreading.
-  * File: 'game.h' and 'game.cpp'
-  * Lines: 32-33 (game.h), 35-36 (game.h), 26-27 (game.cpp)
+  * File: 'game.cpp' and 'game.h'
+  * Lines: 144-145 (game.cpp), 38 (game.h)
+  * Explanation: A new thread is created whenever a bonus food condition is activated. This thread handles the countdown for the bonus food's availability. The bonus food will appear for a limited amount of time, and its remaining time is tracked and updated in real-time. The thread ensures that the bonus food remains visible for the entire duration and manages its disappearance once the time expires.
 
 * Criteria 2: A mutex or lock is used in the project.
-  * File: 'game.h' and game.cpp
-  * Lines: 35 (game.h), 58 (game.cpp), 70 (game.cpp), 88 (game.cpp)
+  * File: 'game.cpp' and 'game.h'
+  * Lines:  108 & 140(game.cpp), 36 (game.h)
+  * Explanation: These lines demonstrate the use of a mutex to synchronize access to shared resources between threads. At line 108, a std::lock_guard is used to lock the mutex when checking and updating the state of the is_bonus_food_active flag. This ensures that only one thread can modify this flag at a time, preventing race conditions. Line 140 shows the use of std::unique_lock in conjunction with std::condition_variable to manage the timing and signaling for the bonus food timer. The std::unique_lock allows for waiting on the condition variable and releasing the mutex while waiting, which helps coordinate between the main game loop and the bonus food timer thread.
 
 ## License
 
