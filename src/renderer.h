@@ -17,7 +17,7 @@ public:
     Renderer(Renderer&& other) noexcept;  // Move constructor
     Renderer& operator=(Renderer&& other) noexcept;  // Move assignment operator
 
-    void Render(Snake const snake, SDL_Point const &food, SDL_Point const&bonus_food);
+    void Render(Snake const snake, SDL_Point const &food, SDL_Point const&bonus_food, int &bonus_food_remaining_time);
     void UpdateWindowTitle(int score, int fps);
 
 private:

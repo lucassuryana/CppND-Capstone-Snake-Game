@@ -172,7 +172,7 @@ Renderer& Renderer::operator=(Renderer&& other) noexcept {
   return *this;
 }
 
-void Renderer::Render(Snake const snake, SDL_Point const &food, SDL_Point const &bonus_food) {
+void Renderer::Render(Snake const snake, SDL_Point const &food, SDL_Point const &bonus_food, int &bonus_food_remaining_time) {
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
@@ -189,10 +189,22 @@ void Renderer::Render(Snake const snake, SDL_Point const &food, SDL_Point const 
 
   // Render bonus food
   if (bonus_food.x != -1 && bonus_food.y != -1) { // Ensure bonus food is active
-    SDL_SetRenderDrawColor(sdl_renderer.get(), 0x00, 0xFF, 0x00, 0xFF); // Green color for bonus food
-    block.x = bonus_food.x * block.w;
-    block.y = bonus_food.y * block.h;
-    SDL_RenderFillRect(sdl_renderer.get(), &block);
+    // Determine blinking effect
+    int blinkInterval = 200;
+    if (bonus_food_remaining_time < 4) {
+         if (SDL_GetTicks() / blinkInterval % 2 == 0) {
+            SDL_SetRenderDrawColor(sdl_renderer.get(), 0x00, 0xFF, 0x00, 0xFF); // Green color for bonus food
+            block.x = bonus_food.x * block.w;
+            block.y = bonus_food.y * block.h;
+            SDL_RenderFillRect(sdl_renderer.get(), &block); 
+          }
+    }
+    else {
+            SDL_SetRenderDrawColor(sdl_renderer.get(), 0x00, 0xFF, 0x00, 0xFF); // Green color for bonus food
+            block.x = bonus_food.x * block.w;
+            block.y = bonus_food.y * block.h;
+            SDL_RenderFillRect(sdl_renderer.get(), &block); 
+    }
   }
 
   // Render snake's body

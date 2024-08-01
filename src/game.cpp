@@ -35,7 +35,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, snake);
     Update();
-    renderer.Render(snake, food, bonus_food);
+    renderer.Render(snake, food, bonus_food, bonus_food_remaining_time);
 
     frame_end = SDL_GetTicks();
 
@@ -80,6 +80,7 @@ void Game::PlaceFood() {
     if (!snake.SnakeCell(x, y)) {
       food.x = x;
       food.y = y;
+      count_place_food++;
       return;
     }
   }
@@ -102,13 +103,13 @@ void Game::PlaceBonusFood() {
 }
 
 void Game::BonusFoodTimer() {
-  const int bonusSeconds = 4;
+  const int bonusSeconds = 6;
   auto startTime = std::chrono::high_resolution_clock::now();
   std::unique_lock<std::mutex> lock(mutex);
   while (is_bonus_food_active) {
     auto current_Time = std::chrono::high_resolution_clock::now();
     auto elapsed_Seconds = std::chrono::duration_cast<std::chrono::seconds>(current_Time - startTime).count();
-    bonus_food_remaining_time = bonusSeconds - static_cast<int>(elapsed_Seconds);
+
     if (elapsed_Seconds >= bonusSeconds) {
       // Bonus food time is up
       is_bonus_food_active = false;
@@ -116,6 +117,8 @@ void Game::BonusFoodTimer() {
       bonus_food.y = -1;
       break;
     }
+
+    bonus_food_remaining_time = bonusSeconds - static_cast<int>(elapsed_Seconds);
     condition_var.wait_for(lock, std::chrono::milliseconds(800));
   }
 }
@@ -133,12 +136,10 @@ void Game::Update() {
     score++;
     PlaceFood();
     
-    if (score % 3 == 0) {
-      std::cout << "There will be a bonus food" << std::endl;
+    if (count_place_food % 4 == 0) {
       std::lock_guard<std::mutex> guard(mutex);
       if (!is_bonus_food_active) {
         PlaceBonusFood();
-        std::cout << "Bonus food is placed" << std::endl;
         is_bonus_food_active = true;
         bonusFoodThread = std::thread(&Game::BonusFoodTimer, this);
         bonusFoodThread.detach();

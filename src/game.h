@@ -38,6 +38,7 @@ class Game {
   std::thread bonusFoodThread;
 
   int score{0}; // The current score of the game
+  int count_place_food{0}; // The counter of how many time normal food is placed
   int bonus_food_remaining_time{0}; // Initialization of the bonus food remaining time
   bool is_bonus_food_active{false}; // The current status of bonus food
 
