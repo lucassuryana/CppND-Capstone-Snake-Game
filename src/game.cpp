@@ -14,6 +14,7 @@ Game::Game(std::size_t grid_width, std::size_t grid_height)
       engine(dev()),
       random_w(0, static_cast<int>(grid_width - 1)),
       random_h(0, static_cast<int>(grid_height - 1)),
+      bonus_food{-1, -1},
       high_score_manager("highscores.txt") {
   PlaceFood(); // Place the initial food
   high_score_manager.LoadHighScores(); // Load high scores from file
