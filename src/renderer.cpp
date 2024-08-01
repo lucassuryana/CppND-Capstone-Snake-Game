@@ -172,7 +172,7 @@ Renderer& Renderer::operator=(Renderer&& other) noexcept {
   return *this;
 }
 
-void Renderer::Render(Snake const snake, SDL_Point const &food) {
+void Renderer::Render(Snake const snake, SDL_Point const &food, SDL_Point const &bonus_food) {
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
@@ -186,6 +186,14 @@ void Renderer::Render(Snake const snake, SDL_Point const &food) {
   block.x = food.x * block.w;
   block.y = food.y * block.h;
   SDL_RenderFillRect(sdl_renderer.get(), &block);
+
+  // Render bonus food
+  if (bonus_food.x != -1 && bonus_food.y != -1) { // Ensure bonus food is active
+    SDL_SetRenderDrawColor(sdl_renderer.get(), 0x00, 0xFF, 0x00, 0xFF); // Green color for bonus food
+    block.x = bonus_food.x * block.w;
+    block.y = bonus_food.y * block.h;
+    SDL_RenderFillRect(sdl_renderer.get(), &block);
+  }
 
   // Render snake's body
   SDL_SetRenderDrawColor(sdl_renderer.get(), 0xFF, 0xFF, 0xFF, 0xFF);

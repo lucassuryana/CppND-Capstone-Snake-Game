@@ -1,10 +1,5 @@
-lucas 3
-asd 2
-asd 2
-asd 2
-lucas 2
-asd 1
-asd 1
-Lucas 0
-Lucas 0
-asd 0
+Lucas 51
+Lucas 32
+Lucas 24
+Lucas 6
+Lucas 3

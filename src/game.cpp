@@ -2,6 +2,10 @@
 #include <iostream>
 #include "SDL.h"
 #include "high_score_manager.h"
+#include <mutex>
+#include <thread>
+#include <chrono>
+#include <condition_variable>
 
 // Constructor
 // Initializes the game with a grid of specified width and height, and sets up the random number generators
@@ -31,7 +35,7 @@ void Game::Run(Controller const &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, snake);
     Update();
-    renderer.Render(snake, food);
+    renderer.Render(snake, food, bonus_food);
 
     frame_end = SDL_GetTicks();
 
@@ -81,6 +85,41 @@ void Game::PlaceFood() {
   }
 }
 
+// Places bonus food at random location not occupied by the snake and the normal food
+void Game::PlaceBonusFood() {
+  int x, y;
+  while (true) {
+    x = random_w(engine);
+    y = random_h(engine);
+    // Check that the location is not occupied by a snake item before placing
+    // food.
+    if ((!snake.SnakeCell(x, y)) && !(food.x == x && food.y == y)) {
+      bonus_food.x = x;
+      bonus_food.y = y;
+      return;
+    }
+  }
+}
+
+void Game::BonusFoodTimer() {
+  const int bonusSeconds = 4;
+  auto startTime = std::chrono::high_resolution_clock::now();
+  std::unique_lock<std::mutex> lock(mutex);
+  while (is_bonus_food_active) {
+    auto current_Time = std::chrono::high_resolution_clock::now();
+    auto elapsed_Seconds = std::chrono::duration_cast<std::chrono::seconds>(current_Time - startTime).count();
+    bonus_food_remaining_time = bonusSeconds - static_cast<int>(elapsed_Seconds);
+    if (elapsed_Seconds >= bonusSeconds) {
+      // Bonus food time is up
+      is_bonus_food_active = false;
+      bonus_food.x = -1;  // Mark as not present
+      bonus_food.y = -1;
+      break;
+    }
+    condition_var.wait_for(lock, std::chrono::milliseconds(800));
+  }
+}
+
 // Updates the game state: moves the snake, check for collisions, and handles food consumption
 void Game::Update() {
   if (!snake.IsAlive()) return;
@@ -90,15 +129,34 @@ void Game::Update() {
   int new_x = static_cast<int>(snake.GetHeadX());
   int new_y = static_cast<int>(snake.GetHeadY());
 
-  // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
     score++;
     PlaceFood();
-    // Grow snake and increase speed.
+    
+    if (score % 3 == 0) {
+      std::cout << "There will be a bonus food" << std::endl;
+      std::lock_guard<std::mutex> guard(mutex);
+      if (!is_bonus_food_active) {
+        PlaceBonusFood();
+        std::cout << "Bonus food is placed" << std::endl;
+        is_bonus_food_active = true;
+        bonusFoodThread = std::thread(&Game::BonusFoodTimer, this);
+        bonusFoodThread.detach();
+      }
+    }
+
     snake.GrowBody();
     snake.SetSpeed(snake.GetSpeed() + 0.02);
   }
+
+  if (bonus_food.x == new_x && bonus_food.y == new_y) {
+    score += 2 + bonus_food_remaining_time; // Bonus scores
+    is_bonus_food_active = false;
+    bonus_food.x = -1;
+    bonus_food.y = -1;
+  }
 }
+
 
 // Returns the current score of the game
 int Game::GetScore() const { return score; }
